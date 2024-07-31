@@ -98,6 +98,26 @@ The PC Hardware Store API is a comprehensive backend solution for managing an e-
 - [x] JWT (for authentication)
 - [x] Postman (for testing API endpoints)
 
+# Filtering, Sorting, Pagination:
+Paginate Products:
+GET /api/v1/products?limit=10&page=2
+
+Sort Products:
+GET /api/v1/products?sort=price,-rating
+
+Select Specific Fields:
+GET /api/v1/products?fields=name,price
+
+Filter Products:
+In Stock: GET /api/v1/products?stockStatus=inStock
+By Brand: GET /api/v1/products?brand=Intel
+By Category: GET /api/v1/products?category=66a927e7efa8d286f95935cc
+By Name: GET /api/v1/products?name=Intel
+
+Numeric Filters:
+GET /api/v1/products?numericFilters=price>100,rating>=4
+
+
 # Installation
 
 1- Clone the repository:
