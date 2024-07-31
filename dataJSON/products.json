@@ -1,0 +1,382 @@
+[
+  {
+    "name": "Intel Core i9-11900K",
+    "brand": "Intel",
+    "category": "66a927e7efa8d286f95935cc",
+    "description": "High-performance processor for gaming and professional use.",
+    "price": 529.99,
+    "stock": 30,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Cores", "value": "8" },
+      { "key": "Threads", "value": "16" },
+      { "key": "Base Clock", "value": "3.5 GHz" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 250,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "AMD Ryzen 9 5950X",
+    "brand": "AMD",
+    "category": "66a927e7efa8d286f95935cc",
+    "description": "Top-of-the-line processor for demanding tasks.",
+    "price": 799.99,
+    "stock": 20,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Cores", "value": "16" },
+      { "key": "Threads", "value": "32" },
+      { "key": "Base Clock", "value": "3.4 GHz" }
+    ],
+    "averageRating": 4.9,
+    "numOfReviews": 150,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "ASUS ROG Strix Z590-E",
+    "brand": "ASUS",
+    "category": "66a927e7efa8d286f95935cd",
+    "description": "High-quality motherboard for gaming PCs.",
+    "price": 379.99,
+    "stock": 40,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": false,
+    "specifications": [
+      { "key": "Chipset", "value": "Z590" },
+      { "key": "Form Factor", "value": "ATX" },
+      { "key": "Memory Support", "value": "128 GB" }
+    ],
+    "averageRating": 4.7,
+    "numOfReviews": 200,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "MSI MAG B550 TOMAHAWK",
+    "brand": "MSI",
+    "category": "66a927e7efa8d286f95935cd",
+    "description": "Reliable motherboard for AMD Ryzen processors.",
+    "price": 169.99,
+    "stock": 50,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Chipset", "value": "B550" },
+      { "key": "Form Factor", "value": "ATX" },
+      { "key": "Memory Support", "value": "128 GB" }
+    ],
+    "averageRating": 4.6,
+    "numOfReviews": 180,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "NVIDIA GeForce RTX 3080",
+    "brand": "NVIDIA",
+    "category": "66a927e7efa8d286f95935d0",
+    "description": "Top-tier graphics card for 4K gaming.",
+    "price": 699.99,
+    "stock": 60,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": false,
+    "specifications": [
+      { "key": "CUDA Cores", "value": "8704" },
+      { "key": "Memory Size", "value": "10 GB" },
+      { "key": "Memory Type", "value": "GDDR6X" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 300,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "AMD Radeon RX 6800 XT",
+    "brand": "AMD",
+    "category": "66a927e7efa8d286f95935d0",
+    "description": "Powerful graphics card for high-performance gaming.",
+    "price": 649.99,
+    "stock": 45,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Stream Processors", "value": "4608" },
+      { "key": "Memory Size", "value": "16 GB" },
+      { "key": "Memory Type", "value": "GDDR6" }
+    ],
+    "averageRating": 4.7,
+    "numOfReviews": 280,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Samsung 970 EVO Plus 1TB",
+    "brand": "Samsung",
+    "category": "66a927e7efa8d286f95935cf",
+    "description": "High-speed NVMe SSD for fast data access.",
+    "price": 149.99,
+    "stock": 70,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": false,
+    "specifications": [
+      { "key": "Storage Capacity", "value": "1 TB" },
+      { "key": "Interface", "value": "NVMe" },
+      { "key": "Read Speed", "value": "3500 MB/s" }
+    ],
+    "averageRating": 4.9,
+    "numOfReviews": 220,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "WD Black SN750 1TB",
+    "brand": "Western Digital",
+    "category": "66a927e7efa8d286f95935cf",
+    "description": "Performance NVMe SSD for gaming and professional use.",
+    "price": 139.99,
+    "stock": 65,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Storage Capacity", "value": "1 TB" },
+      { "key": "Interface", "value": "NVMe" },
+      { "key": "Read Speed", "value": "3400 MB/s" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 190,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Corsair Vengeance LPX 16GB",
+    "brand": "Corsair",
+    "category": "66a927e7efa8d286f95935ce",
+    "description": "High-performance DDR4 RAM for gaming and multitasking.",
+    "price": 79.99,
+    "stock": 100,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Memory Size", "value": "16 GB" },
+      { "key": "Memory Type", "value": "DDR4" },
+      { "key": "Speed", "value": "3200 MHz" }
+    ],
+    "averageRating": 4.9,
+    "numOfReviews": 310,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "G.Skill Trident Z RGB 16GB",
+    "brand": "G.Skill",
+    "category": "66a927e7efa8d286f95935ce",
+    "description": "RGB DDR4 RAM for gaming and high-performance computing.",
+    "price": 89.99,
+    "stock": 90,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Memory Size", "value": "16 GB" },
+      { "key": "Memory Type", "value": "DDR4" },
+      { "key": "Speed", "value": "3200 MHz" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 280,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Intel Core i7-11700K",
+    "brand": "Intel",
+    "category": "66a927e7efa8d286f95935cc",
+    "description": "High-performance processor for gaming and multitasking.",
+    "price": 419.99,
+    "stock": 35,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Cores", "value": "8" },
+      { "key": "Threads", "value": "16" },
+      { "key": "Base Clock", "value": "3.6 GHz" }
+    ],
+    "averageRating": 4.7,
+    "numOfReviews": 220,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "AMD Ryzen 7 5800X",
+    "brand": "AMD",
+    "category": "66a927e7efa8d286f95935cc",
+    "description": "Top-performing processor for gaming and content creation.",
+    "price": 449.99,
+    "stock": 25,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Cores", "value": "8" },
+      { "key": "Threads", "value": "16" },
+      { "key": "Base Clock", "value": "3.8 GHz" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 200,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "ASUS TUF Gaming X570-Plus",
+    "brand": "ASUS",
+    "category": "66a927e7efa8d286f95935cd",
+    "description": "Durable and reliable motherboard for AMD Ryzen processors.",
+    "price": 189.99,
+    "stock": 40,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": false,
+    "specifications": [
+      { "key": "Chipset", "value": "X570" },
+      { "key": "Form Factor", "value": "ATX" },
+      { "key": "Memory Support", "value": "128 GB" }
+    ],
+    "averageRating": 4.7,
+    "numOfReviews": 180,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Gigabyte AORUS X570 Master",
+    "brand": "Gigabyte",
+    "category": "66a927e7efa8d286f95935cd",
+    "description": "High-end motherboard for enthusiasts and gamers.",
+    "price": 359.99,
+    "stock": 30,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Chipset", "value": "X570" },
+      { "key": "Form Factor", "value": "ATX" },
+      { "key": "Memory Support", "value": "128 GB" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 210,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "NVIDIA GeForce RTX 3070",
+    "brand": "NVIDIA",
+    "category": "66a927e7efa8d286f95935d0",
+    "description": "Great value graphics card for 1440p gaming.",
+    "price": 499.99,
+    "stock": 55,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": false,
+    "specifications": [
+      { "key": "CUDA Cores", "value": "5888" },
+      { "key": "Memory Size", "value": "8 GB" },
+      { "key": "Memory Type", "value": "GDDR6" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 270,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "AMD Radeon RX 6700 XT",
+    "brand": "AMD",
+    "category": "66a927e7efa8d286f95935d0",
+    "description": "High-performance graphics card for 1440p gaming.",
+    "price": 479.99,
+    "stock": 50,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Stream Processors", "value": "2560" },
+      { "key": "Memory Size", "value": "12 GB" },
+      { "key": "Memory Type", "value": "GDDR6" }
+    ],
+    "averageRating": 4.7,
+    "numOfReviews": 240,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Crucial P5 1TB",
+    "brand": "Crucial",
+    "category": "66a927e7efa8d286f95935cf",
+    "description": "Fast and reliable NVMe SSD for everyday computing.",
+    "price": 129.99,
+    "stock": 75,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": false,
+    "specifications": [
+      { "key": "Storage Capacity", "value": "1 TB" },
+      { "key": "Interface", "value": "NVMe" },
+      { "key": "Read Speed", "value": "3400 MB/s" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 210,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Samsung 860 EVO 1TB",
+    "brand": "Samsung",
+    "category": "66a927e7efa8d286f95935cf",
+    "description": "Reliable SATA SSD for improved performance.",
+    "price": 99.99,
+    "stock": 80,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Storage Capacity", "value": "1 TB" },
+      { "key": "Interface", "value": "SATA" },
+      { "key": "Read Speed", "value": "550 MB/s" }
+    ],
+    "averageRating": 4.7,
+    "numOfReviews": 230,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Kingston HyperX Fury 16GB",
+    "brand": "Kingston",
+    "category": "66a927e7efa8d286f95935ce",
+    "description": "High-performance DDR4 RAM for gaming.",
+    "price": 74.99,
+    "stock": 95,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": true,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Memory Size", "value": "16 GB" },
+      { "key": "Memory Type", "value": "DDR4" },
+      { "key": "Speed", "value": "3200 MHz" }
+    ],
+    "averageRating": 4.8,
+    "numOfReviews": 300,
+    "user": "66a6b0a1eae41507a10be40c"
+  },
+  {
+    "name": "Team T-Force Delta RGB 16GB",
+    "brand": "Team Group",
+    "category": "66a927e7efa8d286f95935ce",
+    "description": "RGB DDR4 RAM for high-performance gaming.",
+    "price": 84.99,
+    "stock": 85,
+    "image": "https://res.cloudinary.com/dupfpnmly/image/upload/v1722276207/file-upload/tmp-1-1722276205447_r1fvxn.jpg",
+    "featured": false,
+    "freeShipping": true,
+    "specifications": [
+      { "key": "Memory Size", "value": "16 GB" },
+      { "key": "Memory Type", "value": "DDR4" },
+      { "key": "Speed", "value": "3200 MHz" }
+    ],
+    "averageRating": 4.7,
+    "numOfReviews": 270,
+    "user": "66a6b0a1eae41507a10be40c"
+  }
+]
