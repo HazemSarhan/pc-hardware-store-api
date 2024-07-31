@@ -1,10 +1,7 @@
 [PC Hardware Store API]
-# Documentation
-For detailed API documentation, visit [API Documentation](http://localhost:5000/docs).
 
 ## API Documentation
-
-For detailed API documentation, visit [API Documentation](http://localhost:3000/docs).
+For detailed API documentation, visit [API Documentation](http://localhost:3000/api-docs).
 
 ### Authentication
 - `POST /api/v1/auth/register` - Register a new user
