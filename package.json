@@ -26,8 +26,11 @@
     "mongoose": "^8.5.1",
     "morgan": "^1.10.0",
     "stripe": "^16.5.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "validator": "^13.12.0",
-    "xss-clean": "^0.1.1"
+    "xss-clean": "^0.1.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"

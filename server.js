@@ -21,6 +21,11 @@ const xss = require('xss-clean');
 const cors = require('cors');
 const mongoSanitize = require('express-mongo-sanitize');
 
+// Swagger
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
 // DB connection
 const connectDB = require('./db/connect');
 
@@ -50,7 +55,7 @@ app.use(mongoSanitize());
 
 app.use(morgan('tiny'));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, './public')));
+// app.use(express.static(path.join(__dirname, '/public/frontend'))); // if you need to serve frontend files
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(
   fileUpload({
@@ -59,14 +64,17 @@ app.use(
   })
 );
 
-// docs page
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.send(
+    `<h1>PC Hardware Store API</h1><a href="/api-docs">Documentation</a>
+    <a href="/login">Login</a>`
+  );
 });
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // login page for test on browser
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+  res.sendFile(path.join(__dirname, 'public/frontend', 'login.html'));
 });
 
 // Routers

@@ -1,0 +1,787 @@
+openapi: 3.0.0
+info:
+  title: PC-Hardware-Store-API
+  contact: {}
+  version: '1.0'
+servers:
+  - url: http://localhost:5000/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/RegisterUserRequest'
+                - example:
+                    username: user2
+                    email: user2@user.com
+                    password: secret
+            example:
+              username: user2
+              email: user2@user.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/LoginUserRequest'
+                - example:
+                    email: hazem@admin.com
+                    password: secret
+            example:
+              email: hazem@admin.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/logout:
+    get:
+      tags:
+        - Auth
+      summary: Logout User
+      operationId: LogoutUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Get All Users
+      operationId: GetAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/showMe:
+    get:
+      tags:
+        - Users
+      summary: Show Current User
+      operationId: ShowCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUser:
+    patch:
+      tags:
+        - Users
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateUserRequest'
+                - example:
+                    username: hazem
+                    email: hazem@admin.com
+            example:
+              username: hazem
+              email: hazem@admin.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUserPassword:
+    patch:
+      tags:
+        - Users
+      summary: Update User Password
+      operationId: UpdateUserPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateUserPasswordRequest'
+                - example:
+                    oldPassword: secret
+                    newPassword: newsecret
+            example:
+              oldPassword: secret
+              newPassword: newsecret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/66a7abdc275d3157ed22c414:
+    get:
+      tags:
+        - Users
+      summary: Get Single User
+      operationId: GetSingleUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /categories:
+    post:
+      tags:
+        - Categories
+      summary: Create Category
+      operationId: CreateCategory
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateCategoryRequest'
+                - example:
+                    name: Storage
+                    description: Reliable and fast storage solutions for your data needs.
+            example:
+              name: Storage
+              description: Reliable and fast storage solutions for your data needs.
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Categories
+      summary: Get All Categories
+      operationId: GetAllCategories
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /categories/66a7c589431749fcc7d42160:
+    get:
+      tags:
+        - Categories
+      summary: Get Single Category
+      operationId: GetSingleCategory
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /categories/66a7c8b2024d82d31d846ea5:
+    patch:
+      tags:
+        - Categories
+      summary: Update Category
+      operationId: UpdateCategory
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateCategoryRequest'
+                - example:
+                    name: UPDATED
+                    description: this is a new description update
+            example:
+              name: UPDATED
+              description: this is a new description update
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Categories
+      summary: Delete Category
+      operationId: DeleteCategory
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products:
+    post:
+      tags:
+        - Products
+      summary: Create Product
+      operationId: CreateProduct
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - name
+                - brand
+                - category
+                - description
+                - price
+                - stock
+                - '"specifications'
+                - image
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: RTX 3060
+                brand:
+                  type: string
+                  example: Nvidia
+                category:
+                  type: string
+                  example: 66a7c659431749fcc7d42162
+                description:
+                  type: string
+                  example: this is product description
+                price:
+                  type: integer
+                  format: int32
+                  example: 200
+                stock:
+                  type: integer
+                  format: int32
+                  example: 10
+                '"specifications':
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/specification'
+                  description: ''
+                  example:
+                    - key: RTCores
+                      value: '2676'
+                image:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Products
+      summary: Get All Products
+      operationId: GetAllProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/66a92cb043d726d2ee2c00ff:
+    get:
+      tags:
+        - Products
+      summary: Get Single Product
+      operationId: GetSingleProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - Products
+      summary: Update Product
+      operationId: UpdateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateProductRequest'
+                - example:
+                    price: 478.99
+            example:
+              price: 478.99
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Products
+      summary: Delete Product
+      operationId: DeleteProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/uploadImage:
+    post:
+      tags:
+        - Products
+      summary: Upload Product Image
+      operationId: UploadProductImage
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - image
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/66a92cb043d726d2ee2c00ff/reviews:
+    get:
+      tags:
+        - Products
+      summary: Get Single Product Review
+      operationId: GetSingleProductReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews:
+    post:
+      tags:
+        - Reviews
+      summary: Create Review
+      operationId: CreateReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateReviewRequest'
+                - example:
+                    product: 66a92cb043d726d2ee2c00ff
+                    rating: 3
+                    comment: This a good product
+                    title: Recommended!
+            example:
+              product: 66a92cb043d726d2ee2c00ff
+              rating: 3
+              comment: This a good product
+              title: Recommended!
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Reviews
+      summary: Get All Reviews
+      operationId: GetAllReviews
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/66a92304dbb156dc49976719:
+    get:
+      tags:
+        - Reviews
+      summary: Get Single Review
+      operationId: GetSingleReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/66a81d84b02470f81b0c7376:
+    patch:
+      tags:
+        - Reviews
+      summary: Update Review
+      operationId: UpdateReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateReviewRequest'
+                - example:
+                    product: 66a815e8a90e5b9f8a3f9d1c
+                    rating: 3
+                    comment: mid product
+                    title: recommended
+            example:
+              product: 66a815e8a90e5b9f8a3f9d1c
+              rating: 3
+              comment: mid product
+              title: recommended
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/66a92223b749a9dad7ba046a:
+    delete:
+      tags:
+        - Reviews
+      summary: Delete Review
+      operationId: DeleteReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders:
+    post:
+      tags:
+        - Orders
+      summary: Create Order
+      operationId: CreateOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateOrderRequest'
+                - example:
+                    products:
+                      - product: 66a7d696618c3c4461ce312d
+                        quantity: 2
+                      - product: 66a7d725ce870d55adaa6326
+                        quantity: 3
+            example:
+              products:
+                - product: 66a7d696618c3c4461ce312d
+                  quantity: 2
+                - product: 66a7d725ce870d55adaa6326
+                  quantity: 3
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Orders
+      summary: Get All Orders
+      operationId: GetAllOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/66a9176d13781736bf11c1b6:
+    get:
+      tags:
+        - Orders
+      summary: Get Single Order
+      operationId: GetSingleOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - Orders
+      summary: Update Order Status
+      operationId: UpdateOrderStatus
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateOrderStatusRequest'
+                - example:
+                    paymentStatus: completed
+            example:
+              paymentStatus: completed
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+        - username
+        - email
+        - password
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        username: user2
+        email: user2@user.com
+        password: secret
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: hazem@admin.com
+        password: secret
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+        - username
+        - email
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+      example:
+        username: hazem
+        email: hazem@admin.com
+    UpdateUserPasswordRequest:
+      title: UpdateUserPasswordRequest
+      required:
+        - oldPassword
+        - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: secret
+        newPassword: newsecret
+    CreateCategoryRequest:
+      title: CreateCategoryRequest
+      required:
+        - name
+        - description
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        name: Storage
+        description: Reliable and fast storage solutions for your data needs.
+    UpdateCategoryRequest:
+      title: UpdateCategoryRequest
+      required:
+        - name
+        - description
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      example:
+        name: UPDATED
+        description: this is a new description update
+    specification:
+      title: specification
+      required:
+        - key
+        - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      example:
+        key: RTCores
+        value: '2676'
+    UpdateProductRequest:
+      title: UpdateProductRequest
+      required:
+        - price
+      type: object
+      properties:
+        price:
+          type: number
+      example:
+        price: 478.99
+    CreateReviewRequest:
+      title: CreateReviewRequest
+      required:
+        - product
+        - rating
+        - comment
+        - title
+      type: object
+      properties:
+        product:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        comment:
+          type: string
+        title:
+          type: string
+      example:
+        product: 66a92cb043d726d2ee2c00ff
+        rating: 3
+        comment: This a good product
+        title: Recommended!
+    UpdateReviewRequest:
+      title: UpdateReviewRequest
+      required:
+        - product
+        - rating
+        - comment
+        - title
+      type: object
+      properties:
+        product:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        comment:
+          type: string
+        title:
+          type: string
+      example:
+        product: 66a815e8a90e5b9f8a3f9d1c
+        rating: 3
+        comment: mid product
+        title: recommended
+    CreateOrderRequest:
+      title: CreateOrderRequest
+      required:
+        - products
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          description: ''
+      example:
+        products:
+          - product: 66a7d696618c3c4461ce312d
+            quantity: 2
+          - product: 66a7d725ce870d55adaa6326
+            quantity: 3
+    Product:
+      title: Product
+      required:
+        - product
+        - quantity
+      type: object
+      properties:
+        product:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+      example:
+        product: 66a7d696618c3c4461ce312d
+        quantity: 2
+    UpdateOrderStatusRequest:
+      title: UpdateOrderStatusRequest
+      required:
+        - paymentStatus
+      type: object
+      properties:
+        paymentStatus:
+          type: string
+      example:
+        paymentStatus: completed
+security:
+  - {}
+tags:
+  - name: Auth
+  - name: Users
+  - name: Categories
+  - name: Products
+  - name: Reviews
+  - name: Orders
