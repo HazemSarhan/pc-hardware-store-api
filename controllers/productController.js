@@ -64,16 +64,24 @@ const createProduct = async (req, res) => {
 */
 
 const createProduct = async (req, res) => {
-  const { name, brand, category, description, price, stock, specifications } =
-    req.body;
+  const {
+    name,
+    brand,
+    category,
+    description,
+    price,
+    stock,
+    specifications,
+    image,
+  } = req.body;
 
   // Validate required fields
   if (!name || !brand || !category || !price || !stock) {
     throw new CustomError.BadRequestError('Please provide all required fields');
   }
 
-  // Upload image to Cloudinary
-  let image = '';
+  // Upload image to Cloudinary if no image URL is provided
+  let imageUrl = image || '';
   if (req.files && req.files.image) {
     const result = await cloudinary.uploader.upload(
       req.files.image.tempFilePath,
@@ -83,7 +91,7 @@ const createProduct = async (req, res) => {
       }
     );
     fs.unlinkSync(req.files.image.tempFilePath);
-    image = result.secure_url;
+    imageUrl = result.secure_url;
   }
 
   const productData = {
@@ -93,7 +101,7 @@ const createProduct = async (req, res) => {
     description,
     price,
     stock,
-    image,
+    image: imageUrl,
     specifications,
     user: req.user.userId,
   };
@@ -103,12 +111,13 @@ const createProduct = async (req, res) => {
     'category',
     'name'
   );
+
   res.status(StatusCodes.CREATED).json({
     product: {
       _id: populatedProduct._id,
       name: populatedProduct.name,
       brand: populatedProduct.brand,
-      category: populatedProduct.category.name, // Return category name instead of ID
+      category: populatedProduct.category.name,
       description: populatedProduct.description,
       price: populatedProduct.price,
       stock: populatedProduct.stock,
