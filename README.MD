@@ -1,6 +1,6 @@
 [PC Hardware Store API]
 # Documentation
-For detailed API documentation, visit [API Documentation](http://http://localhost:5000/docs).
+For detailed API documentation, visit [API Documentation](http://localhost:5000/docs).
 
 
 # Description
