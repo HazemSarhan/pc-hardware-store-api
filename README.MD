@@ -1,4 +1,44 @@
-[PC Hardware API Render URL](http://localhost:5000/)
+[PC Hardware Store API]
+# Documentation
+For detailed API documentation, visit [API Documentation](http://localhost:5000/docs).
+
+## API Documentation
+
+For detailed API documentation, visit [API Documentation](http://localhost:3000/docs).
+
+### Authentication
+- `POST /api/v1/auth/register` - Register a new user
+- `POST /api/v1/auth/login` - Login a user
+- `POST /api/v1/auth/logout` - Logout a user
+
+### Products
+- `POST /api/v1/products` - Create a new product (Admin only)
+- `GET /api/v1/products` - Get all products
+- `GET /api/v1/products/:id` - Get a single product by ID
+- `PATCH /api/v1/products/:id` - Update a product by ID (Admin only)
+- `DELETE /api/v1/products/:id` - Delete a product by ID (Admin only)
+- `POST /api/v1/products/uploadImage` - Upload an image for a product
+
+### Categories
+- `POST /api/v1/categories` - Create a new category (Admin only)
+- `GET /api/v1/categories` - Get all categories
+- `GET /api/v1/categories/:id` - Get a single category by ID
+- `PATCH /api/v1/categories/:id` - Update a category by ID (Admin only)
+- `DELETE /api/v1/categories/:id` - Delete a category by ID (Admin only)
+
+### Orders
+- `POST /api/v1/orders` - Create a new order
+- `GET /api/v1/orders` - Get all orders (Admin only)
+- `GET /api/v1/orders/:id` - Get a single order by ID
+- `PATCH /api/v1/orders/:id` - Update order status by ID (Admin only)
+
+### Reviews
+- `POST /api/v1/reviews` - Create a new review
+- `GET /api/v1/reviews` - Get all reviews
+- `GET /api/v1/reviews/:id` - Get a single review by ID
+- `PATCH /api/v1/reviews/:id` - Update a review by ID
+- `DELETE /api/v1/reviews/:id` - Delete a review by ID
+- `GET /api/v1/reviews/product/:id` - Get all reviews for a single product
 
 # Description
 
