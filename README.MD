@@ -1,4 +1,7 @@
-[PC Hardware API Render URL](http://localhost:5000/)
+[PC Hardware Store API]
+# Documentation
+For detailed API documentation, visit [API Documentation](http://http://localhost:5000/docs).
+
 
 # Description
 
