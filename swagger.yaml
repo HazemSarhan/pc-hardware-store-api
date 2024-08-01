@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: PC-Hardware-Store-API
+  title: PC-Hardware-API
   contact: {}
   version: '1.0'
 servers:
@@ -138,18 +138,18 @@ paths:
               allOf:
                 - $ref: '#/components/schemas/UpdateUserPasswordRequest'
                 - example:
-                    oldPassword: secret
-                    newPassword: newsecret
+                    oldPassword: newsecret
+                    newPassword: secret
             example:
-              oldPassword: secret
-              newPassword: newsecret
+              oldPassword: newsecret
+              newPassword: secret
         required: true
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
-  /users/66a7abdc275d3157ed22c414:
+  /users/66aa65ff3617f8de0d60c82f:
     get:
       tags:
         - Users
@@ -176,11 +176,11 @@ paths:
               allOf:
                 - $ref: '#/components/schemas/CreateCategoryRequest'
                 - example:
-                    name: Storage
-                    description: Reliable and fast storage solutions for your data needs.
+                    name: CPU
+                    description: Reliable and fast CPU.
             example:
-              name: Storage
-              description: Reliable and fast storage solutions for your data needs.
+              name: CPU
+              description: Reliable and fast CPU.
         required: true
       responses:
         '200':
@@ -198,7 +198,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /categories/66a7c589431749fcc7d42160:
+  /categories/66aa668d3617f8de0d60c841:
     get:
       tags:
         - Categories
@@ -210,7 +210,6 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /categories/66a7c8b2024d82d31d846ea5:
     patch:
       tags:
         - Categories
@@ -225,10 +224,10 @@ paths:
               allOf:
                 - $ref: '#/components/schemas/UpdateCategoryRequest'
                 - example:
-                    name: UPDATED
+                    name: CPU|UPDATED
                     description: this is a new description update
             example:
-              name: UPDATED
+              name: CPU|UPDATED
               description: this is a new description update
         required: true
       responses:
@@ -255,53 +254,35 @@ paths:
       operationId: CreateProduct
       parameters: []
       requestBody:
+        description: ''
         content:
-          multipart/form-data:
-            encoding: {}
+          application/json:
             schema:
-              required:
-                - name
-                - brand
-                - category
-                - description
-                - price
-                - stock
-                - '"specifications'
-                - image
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: RTX 3060
-                brand:
-                  type: string
-                  example: Nvidia
-                category:
-                  type: string
-                  example: 66a7c659431749fcc7d42162
-                description:
-                  type: string
-                  example: this is product description
-                price:
-                  type: integer
-                  format: int32
-                  example: 200
-                stock:
-                  type: integer
-                  format: int32
-                  example: 10
-                '"specifications':
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/specification'
-                  description: ''
-                  example:
-                    - key: RTCores
-                      value: '2676'
-                image:
-                  type: string
-                  format: binary
-        required: false
+              allOf:
+                - $ref: '#/components/schemas/CreateProductRequest'
+                - example:
+                    name: RTX 3060
+                    brand: Nvidia
+                    category: 66a927e7efa8d286f95935d0
+                    description: this is product description
+                    price: '300'
+                    stock: '1000'
+                    specifications:
+                      - key: RTCores
+                        value: '2676'
+                    image: https://res.cloudinary.com/dupfpnmly/image/upload/v1722442324/file-upload/tmp-1-1722442323688_buauhc.jpg
+            example:
+              name: RTX 3060
+              brand: Nvidia
+              category: 66a927e7efa8d286f95935d0
+              description: this is product description
+              price: '300'
+              stock: '1000'
+              specifications:
+                - key: RTCores
+                  value: '2676'
+              image: https://res.cloudinary.com/dupfpnmly/image/upload/v1722442324/file-upload/tmp-1-1722442323688_buauhc.jpg
+        required: true
       responses:
         '200':
           description: ''
@@ -318,7 +299,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /products/66a92cb043d726d2ee2c00ff:
+  /products/66aa66ec3617f8de0d60c852:
     get:
       tags:
         - Products
@@ -345,14 +326,17 @@ paths:
                 - $ref: '#/components/schemas/UpdateProductRequest'
                 - example:
                     price: 478.99
+                    stock: 0
             example:
               price: 478.99
+              stock: 0
         required: true
       responses:
         '200':
           description: ''
           headers: {}
       deprecated: false
+  /products/66a92cb043d726d2ee2c00ff:
     delete:
       tags:
         - Products
@@ -512,16 +496,16 @@ paths:
                 - $ref: '#/components/schemas/CreateOrderRequest'
                 - example:
                     products:
-                      - product: 66a7d696618c3c4461ce312d
-                        quantity: 2
-                      - product: 66a7d725ce870d55adaa6326
-                        quantity: 3
+                      - product: 66aba47c6c10f2b0ca25d955
+                        quantity: 1
+                      - product: 66aba4726c10f2b0ca25d94f
+                        quantity: 1
             example:
               products:
-                - product: 66a7d696618c3c4461ce312d
-                  quantity: 2
-                - product: 66a7d725ce870d55adaa6326
-                  quantity: 3
+                - product: 66aba47c6c10f2b0ca25d955
+                  quantity: 1
+                - product: 66aba4726c10f2b0ca25d94f
+                  quantity: 1
         required: true
       responses:
         '200':
@@ -539,7 +523,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /orders/66a9176d13781736bf11c1b6:
+  /orders/66aba00fa5bce0052839a5a9:
     get:
       tags:
         - Orders
@@ -565,9 +549,41 @@ paths:
               allOf:
                 - $ref: '#/components/schemas/UpdateOrderStatusRequest'
                 - example:
-                    paymentStatus: completed
+                    status: paid
             example:
-              paymentStatus: completed
+              status: paid
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/checkout:
+    post:
+      tags:
+        - Orders
+      summary: Product Checkout
+      operationId: ProductCheckout
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ProductCheckoutRequest'
+                - example:
+                    products:
+                      - product: 66aba47c6c10f2b0ca25d955
+                        quantity: 10000
+                      - product: 66aba4726c10f2b0ca25d94f
+                        quantity: 1
+            example:
+              products:
+                - product: 66aba47c6c10f2b0ca25d955
+                  quantity: 10000
+                - product: 66aba4726c10f2b0ca25d94f
+                  quantity: 1
         required: true
       responses:
         '200':
@@ -634,8 +650,8 @@ components:
         newPassword:
           type: string
       example:
-        oldPassword: secret
-        newPassword: newsecret
+        oldPassword: newsecret
+        newPassword: secret
     CreateCategoryRequest:
       title: CreateCategoryRequest
       required:
@@ -648,8 +664,8 @@ components:
         description:
           type: string
       example:
-        name: Storage
-        description: Reliable and fast storage solutions for your data needs.
+        name: CPU
+        description: Reliable and fast CPU.
     UpdateCategoryRequest:
       title: UpdateCategoryRequest
       required:
@@ -662,10 +678,53 @@ components:
         description:
           type: string
       example:
-        name: UPDATED
+        name: CPU|UPDATED
         description: this is a new description update
-    specification:
-      title: specification
+    CreateProductRequest:
+      title: CreateProductRequest
+      required:
+        - name
+        - brand
+        - category
+        - description
+        - price
+        - stock
+        - specifications
+        - image
+      type: object
+      properties:
+        name:
+          type: string
+        brand:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        price:
+          type: string
+        stock:
+          type: string
+        specifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Specification'
+          description: ''
+        image:
+          type: string
+      example:
+        name: RTX 3060
+        brand: Nvidia
+        category: 66a927e7efa8d286f95935d0
+        description: this is product description
+        price: '300'
+        stock: '1000'
+        specifications:
+          - key: RTCores
+            value: '2676'
+        image: https://res.cloudinary.com/dupfpnmly/image/upload/v1722442324/file-upload/tmp-1-1722442323688_buauhc.jpg
+    Specification:
+      title: Specification
       required:
         - key
         - value
@@ -682,12 +741,17 @@ components:
       title: UpdateProductRequest
       required:
         - price
+        - stock
       type: object
       properties:
         price:
           type: number
+        stock:
+          type: integer
+          format: int32
       example:
         price: 478.99
+        stock: 0
     CreateReviewRequest:
       title: CreateReviewRequest
       required:
@@ -747,10 +811,10 @@ components:
           description: ''
       example:
         products:
-          - product: 66a7d696618c3c4461ce312d
-            quantity: 2
-          - product: 66a7d725ce870d55adaa6326
-            quantity: 3
+          - product: 66aba47c6c10f2b0ca25d955
+            quantity: 1
+          - product: 66aba4726c10f2b0ca25d94f
+            quantity: 1
     Product:
       title: Product
       required:
@@ -764,18 +828,35 @@ components:
           type: integer
           format: int32
       example:
-        product: 66a7d696618c3c4461ce312d
-        quantity: 2
+        product: 66aba47c6c10f2b0ca25d955
+        quantity: 1
     UpdateOrderStatusRequest:
       title: UpdateOrderStatusRequest
       required:
-        - paymentStatus
+        - status
       type: object
       properties:
-        paymentStatus:
+        status:
           type: string
       example:
-        paymentStatus: completed
+        status: paid
+    ProductCheckoutRequest:
+      title: ProductCheckoutRequest
+      required:
+        - products
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+          description: ''
+      example:
+        products:
+          - product: 66aba47c6c10f2b0ca25d955
+            quantity: 10000
+          - product: 66aba4726c10f2b0ca25d94f
+            quantity: 1
 security:
   - {}
 tags:

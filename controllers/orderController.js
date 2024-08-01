@@ -120,96 +120,41 @@ const createOrder = async (req, res) => {
     .json({ order, clientSecret: paymentIntent.client_secret });
 };
 
-module.exports = createOrder;
-/*
-create order with single product
-const createOrder = async (req, res) => {
-  const { product: productId, quantity } = req.body;
-
-  const product = await Product.findById(productId);
-  if (!product) {
-    throw new CustomError.NotFoundError(
-      `No product found with id: ${productId}`
-    );
-  }
-
-  const user = await User.findById(req.user.userId);
-  if (!user) {
-    throw new CustomError.NotFoundError(
-      `No user found with id: ${req.user.userId}`
-    );
-  }
-
-  // check for product availablity in stock or no
-  if (product.stock < quantity) {
-    throw new CustomError.BadRequestError(
-      `Only ${product.stock} items left in stock`
-    );
-  }
-
-  const totalAmount = product.price * quantity;
-
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: totalAmount * 100, // Stripe uses cents
-    currency: 'usd',
-    metadata: { integration_check: 'accept_a_payment' },
-  });
-
-  const order = await Order.create({
-    product: productId,
-    user: req.user.userId,
-    quantity,
-    totalAmount,
-    stripePaymentId: paymentIntent.id,
-  });
-
-  // Decrease the product stock
-  product.stock -= quantity;
-  await product.save();
-
-  res
-    .status(StatusCodes.CREATED)
-    .json({ order, clientSecret: paymentIntent.client_secret });
-};
-*/
-
 const getAllOrders = async (req, res) => {
-  const orders = await Order.find({}).populate('products.product').populate({
-    path: 'user',
-    select: 'username email role', // Exclude password
-  });
-
-  res.status(StatusCodes.OK).json({ orders, ordersCounter: orders.length });
+  const orders = await Order.find({}).populate('user', 'name email');
+  res.status(StatusCodes.OK).json({ orders, count: orders.length });
 };
 
 const getOrderById = async (req, res) => {
   const { id: orderId } = req.params;
-  const order = await Order.findById(orderId)
-    .populate('products.product')
-    .populate({
-      path: 'user',
-      select: 'username email role', // Exclude password
-    });
-
+  const order = await Order.findById(orderId).populate('user', 'name email');
   if (!order) {
     throw new CustomError.NotFoundError(`No order found with id: ${orderId}`);
   }
-
   res.status(StatusCodes.OK).json({ order });
 };
 
 const updateOrderStatus = async (req, res) => {
   const { id: orderId } = req.params;
-  const { paymentStatus } = req.body;
+  const { status } = req.body;
 
-  const order = await Order.findById(orderId);
+  if (
+    !status ||
+    !['pending', 'failed', 'paid', 'delivered', 'canceled'].includes(status)
+  ) {
+    throw new CustomError.BadRequestError('Please provide a valid status');
+  }
+
+  const order = await Order.findByIdAndUpdate(
+    orderId,
+    { status },
+    { new: true, runValidators: false }
+  );
+
   if (!order) {
     throw new CustomError.NotFoundError(`No order found with id: ${orderId}`);
   }
 
-  order.paymentStatus = paymentStatus;
-
-  await order.save();
   res.status(StatusCodes.OK).json({ order });
 };
 
