@@ -5,16 +5,16 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
 
-const createOrder = async (req, res) => {
+const checkoutOrder = async (req, res) => {
   const { products } = req.body;
 
   if (!products || !Array.isArray(products) || products.length === 0) {
     throw new CustomError.BadRequestError('Please provide products');
   }
 
-  let totalAmount = 0;
+  let subtotal = 0;
+  const orderItems = [];
 
-  // Calculate total amount and validate stock
   for (const item of products) {
     const product = await Product.findById(item.product);
     if (!product) {
@@ -29,37 +29,98 @@ const createOrder = async (req, res) => {
       );
     }
 
-    totalAmount += product.price * item.quantity;
+    const orderItem = {
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      amount: item.quantity,
+      product: product._id,
+    };
+
+    orderItems.push(orderItem);
+    subtotal += product.price * item.quantity;
+  }
+
+  const tax = subtotal * 0.15; // Example 15% tax
+  const shippingFee = 10; // Example fixed shipping fee
+  const total = subtotal + tax + shippingFee;
+
+  res.status(StatusCodes.OK).json({
+    orderItems,
+    subtotal,
+    tax,
+    shippingFee,
+    total,
+  });
+};
+
+const createOrder = async (req, res) => {
+  const { products } = req.body;
+
+  if (!products || !Array.isArray(products) || products.length === 0) {
+    throw new CustomError.BadRequestError('Please provide products');
+  }
+
+  let subtotal = 0;
+  const orderItems = [];
+
+  for (const item of products) {
+    const product = await Product.findById(item.product);
+    if (!product) {
+      throw new CustomError.NotFoundError(
+        `No product found with id: ${item.product}`
+      );
+    }
+
+    if (product.stock < item.quantity) {
+      throw new CustomError.BadRequestError(
+        `Only ${product.stock} items left in stock for product: ${product.name}`
+      );
+    }
+
+    const orderItem = {
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      amount: item.quantity,
+      product: product._id,
+    };
+
+    orderItems.push(orderItem);
+    subtotal += product.price * item.quantity;
 
     // Decrease the product stock
     product.stock -= item.quantity;
     await product.save();
   }
 
-  const user = await User.findById(req.user.userId);
-  if (!user) {
-    throw new CustomError.NotFoundError(
-      `No user found with id: ${req.user.userId}`
-    );
-  }
+  const tax = subtotal * 0.15; // Example 15% tax
+  const shippingFee = 10; // Example fixed shipping fee
+  const total = subtotal + tax + shippingFee;
 
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: totalAmount * 100, // Stripe uses cents
+    amount: total * 100, // Stripe uses cents
     currency: 'usd',
     metadata: { integration_check: 'accept_a_payment' },
   });
 
   const order = await Order.create({
-    products,
+    orderItems,
     user: req.user.userId,
-    totalAmount,
-    stripePaymentId: paymentIntent.id,
+    tax,
+    shippingFee,
+    subtotal,
+    total,
+    clientSecret: paymentIntent.client_secret,
+    paymentIntentId: paymentIntent.id,
   });
 
   res
     .status(StatusCodes.CREATED)
     .json({ order, clientSecret: paymentIntent.client_secret });
 };
+
+module.exports = createOrder;
 /*
 create order with single product
 const createOrder = async (req, res) => {
@@ -157,4 +218,5 @@ module.exports = {
   getAllOrders,
   getOrderById,
   updateOrderStatus,
+  checkoutOrder,
 };

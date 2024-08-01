@@ -1,5 +1,5 @@
 const paginate = (model, queryObject, options) => {
-  const { page = 1, limit = 10, sort, fields, numericFilters } = options;
+  const { page = 1, limit = 12, sort, fields, numericFilters } = options;
 
   if (numericFilters) {
     const operatorMap = {
@@ -41,7 +41,7 @@ const paginate = (model, queryObject, options) => {
 
   // Pagination
   const pageValue = parseInt(page, 10);
-  const limitValue = parseInt(limit, 10);
+  const limitValue = parseInt(limit, 12);
   const skip = (pageValue - 1) * limitValue;
 
   result = result.skip(skip).limit(limitValue);

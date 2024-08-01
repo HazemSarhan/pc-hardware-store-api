@@ -2,11 +2,14 @@ const express = require('express');
 const router = express.Router();
 const { authenticatedUser } = require('../middleware/authentication');
 const {
+  checkoutOrder,
   createOrder,
   getAllOrders,
   getOrderById,
   updateOrderStatus,
 } = require('../controllers/orderController');
+
+router.route('/checkout').post(authenticatedUser, checkoutOrder);
 
 router
   .route('/')
