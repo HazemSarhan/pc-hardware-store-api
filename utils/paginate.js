@@ -1,4 +1,4 @@
-const paginate = (model, queryObject, options) => {
+const paginate = async (model, queryObject, options) => {
   const { page = 1, limit = 12, sort, fields, numericFilters } = options;
 
   if (numericFilters) {
@@ -46,7 +46,20 @@ const paginate = (model, queryObject, options) => {
 
   result = result.skip(skip).limit(limitValue);
 
-  return result;
+  const total = await model.countDocuments(queryObject);
+  const totalPages = Math.ceil(total / limitValue);
+
+  const results = await result;
+
+  return {
+    results,
+    pagination: {
+      page: pageValue,
+      pageSize: limitValue,
+      pageCount: totalPages,
+      total,
+    },
+  };
 };
 
 module.exports = paginate;

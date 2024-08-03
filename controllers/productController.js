@@ -136,29 +136,15 @@ const createProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   const {
-    featured,
-    brand,
-    name,
+    page = 1,
+    limit = 10,
     sort,
     fields,
     numericFilters,
-    page,
-    limit,
     stockStatus,
   } = req.query;
-
   const queryObject = {};
-  if (featured) {
-    queryObject.featured = featured === 'true';
-  }
-  if (brand) {
-    queryObject.brand = brand;
-  }
-  if (name) {
-    queryObject.name = { $regex: name, $options: 'i' };
-  }
 
-  // Add stock status filter
   if (stockStatus) {
     if (stockStatus === 'inStock') {
       queryObject.stock = { $gt: 0 };
@@ -168,15 +154,13 @@ const getAllProducts = async (req, res) => {
   }
 
   const options = { page, limit, sort, fields, numericFilters };
-  const result = paginate(Product, queryObject, options).populate(
-    'category',
-    'name'
+  const { results: products, pagination } = await paginate(
+    Product,
+    queryObject,
+    options
   );
 
-  const products = await result;
-  res
-    .status(StatusCodes.OK)
-    .json({ products, productsCounter: products.length });
+  res.status(StatusCodes.OK).json({ products, meta: { pagination } });
 };
 
 const updateProduct = async (req, res) => {
