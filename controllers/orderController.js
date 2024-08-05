@@ -4,6 +4,7 @@ const User = require('../models/User');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { StatusCodes } = require('http-status-codes');
 const CustomError = require('../errors');
+const { paginate } = require('../utils');
 
 const checkoutOrder = async (req, res) => {
   const { products } = req.body;
@@ -121,8 +122,51 @@ const createOrder = async (req, res) => {
 };
 
 const getAllOrders = async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'name email');
-  res.status(StatusCodes.OK).json({ orders, count: orders.length });
+  const {
+    page = 1,
+    limit = 10,
+    sort,
+    fields,
+    numericFilters,
+    tax,
+    shippingFee,
+    subtotal,
+    total,
+  } = req.query;
+  const queryObject = {};
+
+  if (tax) {
+    queryObject.tax = tax;
+  }
+
+  if (shippingFee) {
+    queryObject.shippingFee = shippingFee;
+  }
+
+  if (subtotal) {
+    queryObject.subtotal = subtotal;
+  }
+
+  if (total) {
+    queryObject.total = total;
+  }
+
+  const options = {
+    page,
+    limit,
+    sort,
+    fields,
+    numericFilters,
+    populate: [{ path: 'user', select: 'username email' }],
+  };
+
+  const { results: orders, pagination } = await paginate(
+    Order,
+    queryObject,
+    options
+  );
+
+  res.status(StatusCodes.OK).json({ orders, meta: { pagination } });
 };
 
 const getOrderById = async (req, res) => {

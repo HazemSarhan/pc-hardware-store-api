@@ -142,6 +142,10 @@ const getAllProducts = async (req, res) => {
     fields,
     numericFilters,
     stockStatus,
+    name,
+    category,
+    brand,
+    price,
   } = req.query;
   const queryObject = {};
 
@@ -151,6 +155,22 @@ const getAllProducts = async (req, res) => {
     } else if (stockStatus === 'outOfStock') {
       queryObject.stock = { $lte: 0 };
     }
+  }
+
+  if (name) {
+    queryObject.name = { $regex: name, $options: 'i' };
+  }
+
+  if (category) {
+    queryObject.category = category;
+  }
+
+  if (brand) {
+    queryObject.brand = brand;
+  }
+
+  if (price) {
+    queryObject.price = price;
   }
 
   const options = { page, limit, sort, fields, numericFilters };

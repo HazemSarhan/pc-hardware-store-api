@@ -1,5 +1,12 @@
-const paginate = async (model, queryObject, options) => {
-  const { page = 1, limit = 12, sort, fields, numericFilters } = options;
+const paginate = async (model, queryObject, options, selectFields) => {
+  const {
+    page = 1,
+    limit = 12,
+    sort,
+    fields,
+    numericFilters,
+    populate,
+  } = options;
 
   if (numericFilters) {
     const operatorMap = {
@@ -25,6 +32,11 @@ const paginate = async (model, queryObject, options) => {
 
   let result = model.find(queryObject);
 
+  // Exclude fields
+  if (selectFields) {
+    result = result.select(selectFields);
+  }
+
   // Sorting
   if (sort) {
     const sortList = sort.split(',').join(' ');
@@ -45,6 +57,11 @@ const paginate = async (model, queryObject, options) => {
   const skip = (pageValue - 1) * limitValue;
 
   result = result.skip(skip).limit(limitValue);
+
+  // Apply populate option
+  if (populate) {
+    result = result.populate(populate);
+  }
 
   const total = await model.countDocuments(queryObject);
   const totalPages = Math.ceil(total / limitValue);

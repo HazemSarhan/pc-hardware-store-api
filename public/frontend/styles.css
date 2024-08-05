@@ -1,35 +1,17 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 1em;
-  text-align: center;
-}
-
-nav a {
-  color: #fff;
-  margin: 0 1em;
-  text-decoration: none;
-}
-
-main {
-  padding: 1em;
-}
-
-form {
   display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
 }
 
-form label,
-form input,
-form button {
-  margin: 0.5em 0;
+.card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border-radius: 0.25rem;
+}
+
+.card-title {
+  margin-bottom: 1.5rem;
+  font-weight: 300;
 }

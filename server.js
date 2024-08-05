@@ -55,7 +55,7 @@ app.use(mongoSanitize());
 
 app.use(morgan('tiny'));
 app.use(express.json());
-// app.use(express.static(path.join(__dirname, '/public/frontend'))); // if you need to serve frontend files
+app.use(express.static(path.join(__dirname, '/public/frontend'))); // if you need to serve frontend files
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(
   fileUpload({

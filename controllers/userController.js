@@ -5,11 +5,42 @@ const {
   attachCookiesToResponse,
   createTokenUser,
   checkPermission,
+  paginate,
 } = require('../utils');
 
 const getAllUsers = async (req, res) => {
-  const users = await User.find({}).select('-password');
-  res.status(StatusCodes.OK).json({ users, userCounter: users.length });
+  const {
+    page = 1,
+    limit = 10,
+    sort,
+    fields,
+    numericFilters,
+    username,
+    email,
+    role,
+  } = req.query;
+
+  const queryObject = {};
+
+  if (username) {
+    queryObject.username = { $regex: username, $options: 'i' }; // Case-insensitive search
+  }
+  if (email) {
+    queryObject.email = { $regex: email, $options: 'i' }; // Case-insensitive search
+  }
+  if (role) {
+    queryObject.role = role;
+  }
+
+  const options = { page, limit, sort, fields, numericFilters };
+  const { results: users, pagination } = await paginate(
+    User,
+    queryObject,
+    options,
+    '-password' // Exclude the password field
+  );
+
+  res.status(StatusCodes.OK).json({ users, meta: { pagination } });
 };
 
 const getSingleUser = async (req, res) => {
