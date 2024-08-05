@@ -80,6 +80,24 @@ const createProduct = async (req, res) => {
     throw new CustomError.BadRequestError('Please provide all required fields');
   }
 
+  // Parse specifications if it's a string
+  let parsedSpecifications = [];
+  if (typeof specifications === 'string') {
+    try {
+      parsedSpecifications = JSON.parse(specifications);
+    } catch (error) {
+      throw new CustomError.BadRequestError(
+        'Invalid JSON format for specifications'
+      );
+    }
+  } else if (Array.isArray(specifications)) {
+    parsedSpecifications = specifications;
+  } else {
+    throw new CustomError.BadRequestError(
+      'Specifications must be a valid JSON string or an array'
+    );
+  }
+
   // Upload image to Cloudinary if no image URL is provided
   let imageUrl = image || '';
   if (req.files && req.files.image) {
@@ -102,7 +120,7 @@ const createProduct = async (req, res) => {
     price,
     stock,
     image: imageUrl,
-    specifications,
+    specifications: parsedSpecifications,
     user: req.user.userId,
   };
 

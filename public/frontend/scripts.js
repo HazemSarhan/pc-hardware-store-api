@@ -3,48 +3,28 @@ document
   .addEventListener('submit', async function (event) {
     event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const loginData = {
+      email: formData.get('email'),
+      password: formData.get('password'),
+    };
 
     const response = await fetch('http://localhost:5000/api/v1/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(loginData),
     });
 
-    const data = await response.json();
-
+    const result = await response.json();
     if (response.ok) {
       alert('Login successful');
+      // Optionally, redirect to another page
+      // window.location.href = '/dashboard.html';
     } else {
-      alert(data.msg || 'Login failed');
-    }
-  });
-
-document
-  .getElementById('registerForm')
-  .addEventListener('submit', async function (event) {
-    event.preventDefault();
-
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    const response = await fetch('http://localhost:3000/api/v1/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, email, password }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert('Registration successful');
-    } else {
-      alert(data.msg || 'Registration failed');
+      alert(result.msg || 'Login failed');
     }
   });

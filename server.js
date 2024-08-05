@@ -77,6 +77,10 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/frontend', 'login.html'));
 });
 
+app.get('/createProduct', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/frontend', 'create-product.html'));
+});
+
 // Routers
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', UserRouter);
