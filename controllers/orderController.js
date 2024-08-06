@@ -202,10 +202,36 @@ const updateOrderStatus = async (req, res) => {
   res.status(StatusCodes.OK).json({ order });
 };
 
+const getOrdersByUser = async (req, res) => {
+  const { page = 1, limit = 10, sort, fields, numericFilters } = req.query;
+  const queryObject = { user: req.user.userId };
+
+  const options = {
+    page,
+    limit,
+    sort,
+    fields,
+    numericFilters,
+    populate: [
+      { path: 'user', select: 'username email' },
+      { path: 'orderItems.product', select: 'name price' },
+    ],
+  };
+
+  const { results: orders, pagination } = await paginate(
+    Order,
+    queryObject,
+    options
+  );
+
+  res.status(StatusCodes.OK).json({ orders, meta: { pagination } });
+};
+
 module.exports = {
   createOrder,
   getAllOrders,
   getOrderById,
   updateOrderStatus,
   checkoutOrder,
+  getOrdersByUser,
 };

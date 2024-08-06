@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Product</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>Update Product</h2>
+      <form id="updateProductForm">
+        <div class="form-group">
+          <label for="productId">Product ID</label>
+          <input
+            type="text"
+            id="productId"
+            name="productId"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="brand">Brand</label>
+          <input
+            type="text"
+            id="brand"
+            name="brand"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input
+            type="text"
+            id="category"
+            name="category"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            class="form-control"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input
+            type="number"
+            id="stock"
+            name="stock"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="specifications">Specifications (JSON format)</label>
+          <textarea
+            id="specifications"
+            name="specifications"
+            class="form-control"
+            placeholder='[{"key":"RAM","value":"16GB"}]'
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            class="form-control-file"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Update Product</button>
+      </form>
+    </div>
+    <script src="updateProductScripts.js"></script>
+  </body>
+</html>

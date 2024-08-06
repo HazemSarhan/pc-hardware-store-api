@@ -7,6 +7,7 @@ const {
   getAllOrders,
   getOrderById,
   updateOrderStatus,
+  getOrdersByUser,
 } = require('../controllers/orderController');
 
 router.route('/checkout').post(authenticatedUser, checkoutOrder);
@@ -15,6 +16,8 @@ router
   .route('/')
   .post(authenticatedUser, createOrder)
   .get(authenticatedUser, getAllOrders);
+
+router.route('/myOrders').get(authenticatedUser, getOrdersByUser);
 
 router
   .route('/:id')
